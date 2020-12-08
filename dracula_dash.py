@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 
 context = ssl._create_unverified_context()
 
+nltk.download('punkt')
+
 st.title('Dashboard: Dracula')
 
 
