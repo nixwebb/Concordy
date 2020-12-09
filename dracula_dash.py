@@ -51,7 +51,8 @@ sentInt = list(range(len(sents)))
 
 plt.xlabel('Sentence number')
 plt.ylabel('Cumulative counts')
-plt.plot(sentInt,dracula_counts)
+plt.plot(sentInt,dracula_counts,label=word)
+plt.legend()
 
 st.pyplot()
 
