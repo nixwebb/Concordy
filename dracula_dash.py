@@ -33,25 +33,34 @@ if st.checkbox('Show raw data'):
 
 st.subheader('Dracula in Dracula')
 
-word = st.text_input("Words to search for:","Dracula")
+input = st.text_input("Words to search for (separate words with space):","Dracula vampire")
+words = input.split()
+cD = {word:[] for word in words}
 
 sents = nltk.sent_tokenize(data)
-dracula_counts = []
+
 for sent in sents:
+
     toks = nltk.word_tokenize(sent)
-    dc = toks.count(word)
-    if dracula_counts == []:
-        current = 0
-    else:
-        current = dracula_counts[-1]
-    new = current + dc
-    dracula_counts.append(new)
+    for word in words:
+
+
+        dc = toks.count(word)
+        if cD[word] == []:
+            current = 0
+        else:
+            current = cD[word][-1]
+        new = current + dc
+        cD[word].append(new)
 
 sentInt = list(range(len(sents)))    
 
 plt.xlabel('Sentence number')
 plt.ylabel('Cumulative counts')
-plt.plot(sentInt,dracula_counts,label=word)
+
+for key in cD:
+    plt.plot(sentInt,cD[key],label=key)
+
 plt.legend()
 
 st.pyplot()
