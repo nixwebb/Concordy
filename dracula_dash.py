@@ -33,11 +33,13 @@ if st.checkbox('Show raw data'):
 
 st.subheader('Dracula in Dracula')
 
+word = st.text_input("Words to search for:","Dracula")
+
 sents = nltk.sent_tokenize(data)
 dracula_counts = []
 for sent in sents:
     toks = nltk.word_tokenize(sent)
-    dc = toks.count('Dracula')
+    dc = toks.count(word)
     if dracula_counts == []:
         current = 0
     else:
